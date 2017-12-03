@@ -1,6 +1,7 @@
 ﻿namespace NetTelegraph.Test.TestObject
 {
-    class AccountObject
+    internal class AccountObject
     {
+
     }
 }
