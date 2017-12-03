@@ -11,7 +11,12 @@ namespace NetTelegraph
     /// </summary>
     public class TelegraphBot
     {
-        private readonly RestClient mRestClient = new RestClient("https://api.telegra.ph");
+        internal TelegraphBot()
+        {
+            RestClient = new RestClient("https://api.telegra.ph");
+        }
+
+        internal RestClient RestClient { private get; set; }
 
         private const string mCreateAccountUri = "/createAccount";
 
@@ -47,7 +52,7 @@ namespace NetTelegraph
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
         {
-            IRestResponse response = mRestClient.Execute(request);
+            IRestResponse response = RestClient.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
