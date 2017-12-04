@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using RestSharp;
 
 #if DEBUG
-[assembly: InternalsVisibleTo("NetTelegraph.Tests")]
+[assembly: InternalsVisibleTo("NetTelegraph.Test")]
 #endif
 
 namespace NetTelegraph
@@ -16,7 +16,11 @@ namespace NetTelegraph
     /// </summary>
     public class TelegraphBot
     {
-        internal TelegraphBot()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public TelegraphBot()
         {
             RestClient = new RestClient("https://api.telegra.ph");
         }
