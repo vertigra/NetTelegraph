@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Net;
+using System.Runtime.CompilerServices;
 using NetTelegraph.Result;
 using Newtonsoft.Json;
 using RestSharp;
+
+#if DEBUG
+[assembly: InternalsVisibleTo("NetTelegraph.Tests")]
+#endif
 
 namespace NetTelegraph
 {
