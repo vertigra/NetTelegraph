@@ -22,16 +22,18 @@ namespace NetTelegraph
         /// </summary>
         public TelegraphBot()
         {
-            RestClient = new RestClient("https://api.telegra.ph");
+            mRestClient = new RestClient("https://api.telegra.ph");
         }
 
-        internal RestClient RestClient { private get; set; }
+        internal RestClient mRestClient { private get; set; }
 
         private const string mCreateAccountUri = "/createAccount";
 
-        private RestRequest NewRestRequest(string uri)
+        private static RestRequest NewRestRequest(string uri)
         {
-            return new RestRequest(string.Format(uri), Method.POST);
+            RestRequest request = new RestRequest(string.Format(uri), Method.POST);
+
+            return request;
         }
 
         /// <summary>
@@ -47,21 +49,22 @@ namespace NetTelegraph
         /// </returns>
         public AccountResult CreateAccount(string shortName, string authorName = null, string authorUrl = null)
         {
+            //todo exp with seralize object
             RestRequest request = NewRestRequest(mCreateAccountUri);
 
-            request.AddParameter("short_name", authorName);
+            request.AddParameter("short_name", shortName);
 
             if (authorName != null)
-                request.AddParameter("", authorName);
+                request.AddParameter("author_name", authorName);
             if (authorUrl != null)
-                request.AddParameter("", authorUrl);
+                request.AddParameter("author_url", authorUrl);
 
             return ExecuteRequest<AccountResult>(request) as AccountResult;
         }
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
         {
-            IRestResponse response = RestClient.Execute(request);
+            IRestResponse response = mRestClient.Execute(request);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
