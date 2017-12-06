@@ -57,9 +57,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonUtils.cs" />
     <Compile Include="MockServers\MockServer.cs" />
+    <Compile Include="MockServers\ResponseString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestObject\AccountObject.cs" />
+    <Compile Include="TestObject\BadResponse.cs" />
     <Compile Include="ToMockServerTest\TelegramBotTest.cs" />
   </ItemGroup>
   <ItemGroup>

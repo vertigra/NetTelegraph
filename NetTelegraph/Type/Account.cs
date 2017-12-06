@@ -46,6 +46,6 @@ namespace NetTelegraph.Type
         /// Optional. Number of pages belonging to the Telegraph account.
         /// </summary>
         [JsonProperty("page_count", Required = Required.AllowNull)]
-        public string PageCount { get; set; }
+        public int PageCount { get; set; }
     }
 }

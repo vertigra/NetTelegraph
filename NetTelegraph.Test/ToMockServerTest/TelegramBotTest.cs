@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Mock4Net.Core;
 using NetTelegraph.Test.MockServers;
@@ -44,7 +43,7 @@ namespace NetTelegraph.Test.ToMockServerTest
             var request =
                 MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/createAccount").UsingPost());
 
-            PrintResult(request);
+            CommonUtils.PrintResult(request);
 
             Assert.Multiple(() =>
             {
@@ -57,19 +56,6 @@ namespace NetTelegraph.Test.ToMockServerTest
                 Assert.Throws<Exception>(
                     () => mTelegraphBotBadResponse.CreateAccount("TestShortName"));
             });
-        }
-
-        //todo move to common class
-        public static void PrintResult(IEnumerable<Request> request)
-        {
-            WriteConsoleLog(request.FirstOrDefault()?.Body);
-            WriteConsoleLog(request.FirstOrDefault()?.Url);
-        }
-
-        //todo move to common class
-        public static void WriteConsoleLog(string text)
-        {
-            Console.WriteLine(DateTime.Now.ToLocalTime() + " " + text);
         }
     }
 }
