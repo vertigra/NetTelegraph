@@ -2,6 +2,7 @@
 using System.Net;
 using System.Runtime.CompilerServices;
 using NetTelegraph.Result;
+using NetTelegraph.Type;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -28,6 +29,7 @@ namespace NetTelegraph
         internal RestClient mRestClient { private get; set; }
 
         private const string mCreateAccountUri = "/createAccount";
+        private const string mCreatePagetUri = "/createPage";
 
         private static RestRequest NewRestRequest(string uri)
         {
@@ -62,6 +64,36 @@ namespace NetTelegraph
             return ExecuteRequest<AccountResult>(request) as AccountResult;
         }
 
+        /// <summary>
+        /// Use this method to create a new Telegraph page. On success, returns a Page object.
+        /// </summary>
+        /// <param name="accessToken">Required. Access token of the Telegraph account.</param>
+        /// <param name="title">Required. Page title.</param>
+        /// <param name="content">Required. Content of the page. </param>
+        /// <param name="authorName">Author name, displayed below the article's title.</param>
+        /// <param name="authorUrl">Profile link, opened when users click on the author's name below the title. 
+        /// Can be any link, not necessarily to a Telegram profile or channel.</param>
+        /// <param name="returnContent">If true, a content field will be returned in the Page object (see: Content format).</param>
+        /// <returns></returns>
+        public Page CreatePage(string accessToken, string title, Node[] content, string authorName = null,
+            string authorUrl = null, bool returnContent = false)
+        {
+            RestRequest request = NewRestRequest(mCreatePagetUri);
+
+            request.AddParameter("access_token", accessToken);
+            request.AddParameter("title", title);
+            request.AddParameter("content", content);
+
+            if(authorName != null)
+                request.AddParameter("author_name", authorName);
+            if (authorUrl != null)
+                request.AddParameter("author_url", authorUrl);
+            if (returnContent)
+                request.AddParameter("return_content", true);
+
+            return ExecuteRequest<Page>(request) as Page;
+        }
+
         private object ExecuteRequest<T>(IRestRequest request) where T : class
         {
             IRestResponse response = mRestClient.Execute(request);
@@ -70,6 +102,8 @@ namespace NetTelegraph
             {
                 if (typeof (T) == typeof (AccountResult))
                     return JsonConvert.DeserializeObject<AccountResult>(response.Content);
+                if (typeof (T) == typeof (Page))
+                    return JsonConvert.DeserializeObject<Page>(response.Content);
             }
 
             throw new Exception(response.StatusDescription);

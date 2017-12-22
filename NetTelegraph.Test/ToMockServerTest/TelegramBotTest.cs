@@ -57,5 +57,11 @@ namespace NetTelegraph.Test.ToMockServerTest
                     () => mTelegraphBotBadResponse.CreateAccount("TestShortName"));
             });
         }
+
+        [Test]
+        public void CreatePageTest()
+        {
+            
+        }
     }
 }
