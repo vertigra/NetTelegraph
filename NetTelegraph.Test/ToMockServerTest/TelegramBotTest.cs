@@ -2,6 +2,7 @@
 using System.Linq;
 using Mock4Net.Core;
 using NetTelegraph.Test.MockServers;
+using NetTelegraph.Type;
 using NUnit.Framework;
 using RestSharp;
 
@@ -61,7 +62,9 @@ namespace NetTelegraph.Test.ToMockServerTest
         [Test]
         public void CreatePageTest()
         {
-            
+            mTelegraphBotOkResponse.CreatePage("TestAccessToken", "TestTitle", new Node[] {}, "TestAuthorName",
+                "TestAuthorUrl", true);
+
         }
     }
 }
