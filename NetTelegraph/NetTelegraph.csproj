@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\Attrs.cs" />
     <Compile Include="Enum\Tag.cs" />
     <Compile Include="Result\AccountResult.cs" />
     <Compile Include="TelegraphBot.cs" />
