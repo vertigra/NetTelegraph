@@ -5,7 +5,7 @@ namespace NetTelegraph.Type
     /// <summary>
     /// This object represents a DOM element node.
     /// </summary>
-    public class NodeElements
+    public class NodeElements : Interface.Node
     {
         /// <summary>
         /// Name of the DOM element. 

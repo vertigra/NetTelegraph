@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Mock4Net.Core;
+using NetTelegraph.Enum;
 using NetTelegraph.Test.MockServers;
 using NetTelegraph.Type;
 using NUnit.Framework;
 using RestSharp;
+using Node = NetTelegraph.Interface.Node;
 
 namespace NetTelegraph.Test.ToMockServerTest
 {
@@ -62,7 +64,21 @@ namespace NetTelegraph.Test.ToMockServerTest
         [Test]
         public void CreatePageTest()
         {
-            mTelegraphBotOkResponse.CreatePage("TestAccessToken", "TestTitle", new Node[] {}, "TestAuthorName",
+            Node[] content = {
+
+                new NodeElements
+                {
+                    Tag = Tag.br
+                    
+                },
+
+                new NodeElements
+                {
+                    Tag = Tag.br
+                }
+            };
+
+            mTelegraphBotOkResponse.CreatePage("TestAccessToken", "TestTitle", content, "TestAuthorName",
                 "TestAuthorUrl", true);
 
         }

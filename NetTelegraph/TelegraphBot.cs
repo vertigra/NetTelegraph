@@ -5,6 +5,7 @@ using NetTelegraph.Result;
 using NetTelegraph.Type;
 using Newtonsoft.Json;
 using RestSharp;
+using Node = NetTelegraph.Interface.Node;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("NetTelegraph.Test")]
