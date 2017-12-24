@@ -53,12 +53,15 @@ namespace NetTelegraph.Type
         [JsonProperty("image_url", Required = Required.AllowNull)]
         public string ImageUrl { get; set; }
 
+        //todo parse type
         /// <summary>
         /// Optional. 
         /// Content of the page.
         /// </summary>
         [JsonProperty("content", Required = Required.AllowNull)]
-        public Node[] Content { get; set; }
+        public Interface.Node[] Content {
+            get { return ParseArray(); }
+            set { CheckFormat(value); } }
 
         /// <summary>
         /// Number of page views for the page.
@@ -75,10 +78,16 @@ namespace NetTelegraph.Type
         public bool CanEdit { get; set; }
 
         //this example
-        internal static Node[] ParseArray(string json)
+        internal static Interface.Node[] ParseArray()
         {
             //return jsonArray.Cast<JObject>().Select(jobject => new PhotoSizeInfo(jobject)).ToArray();
-            return JsonConvert.DeserializeObject<Node[]>(json);
+            //return JsonConvert.DeserializeObject<Node[]>(json);
+            return null;
+        }
+
+        internal static object CheckFormat(Interface.Node[] node)
+        {
+            return null;
         }
     }
 }
