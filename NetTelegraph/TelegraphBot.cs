@@ -76,14 +76,14 @@ namespace NetTelegraph
         /// Can be any link, not necessarily to a Telegram profile or channel.</param>
         /// <param name="returnContent">If true, a content field will be returned in the Page object (see: Content format).</param>
         /// <returns></returns>
-        public Page CreatePage(string accessToken, string title, Node[] content, string authorName = null,
+        public PageResult CreatePage(string accessToken, string title, /*Type.Node[] content,*/ string authorName = null,
             string authorUrl = null, bool returnContent = false)
         {
             RestRequest request = NewRestRequest(mCreatePagetUri);
 
             request.AddParameter("access_token", accessToken);
             request.AddParameter("title", title);
-            request.AddParameter("content", content);
+            //request.AddParameter("content", content);
 
             if(authorName != null)
                 request.AddParameter("author_name", authorName);
@@ -92,7 +92,7 @@ namespace NetTelegraph
             if (returnContent)
                 request.AddParameter("return_content", true);
 
-            return ExecuteRequest<Page>(request) as Page;
+            return ExecuteRequest<PageResult>(request) as PageResult;
         }
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
@@ -103,8 +103,8 @@ namespace NetTelegraph
             {
                 if (typeof (T) == typeof (AccountResult))
                     return JsonConvert.DeserializeObject<AccountResult>(response.Content);
-                if (typeof (T) == typeof (Page))
-                    return JsonConvert.DeserializeObject<Page>(response.Content);
+                if (typeof (T) == typeof (PageResult))
+                    return JsonConvert.DeserializeObject<PageResult>(response.Content);
             }
 
             throw new Exception(response.StatusDescription);

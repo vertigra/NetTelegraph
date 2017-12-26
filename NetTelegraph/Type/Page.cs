@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace NetTelegraph.Type
 {
@@ -59,9 +60,7 @@ namespace NetTelegraph.Type
         /// Content of the page.
         /// </summary>
         [JsonProperty("content", Required = Required.AllowNull)]
-        public Interface.Node[] Content {
-            get { return ParseArray(); }
-            set { CheckFormat(value); } }
+        public Interface.Node[] Content { get; set; }
 
         /// <summary>
         /// Number of page views for the page.
@@ -77,12 +76,14 @@ namespace NetTelegraph.Type
         [JsonProperty("can_edit", Required = Required.AllowNull)]
         public bool CanEdit { get; set; }
 
-        //this example
-        internal static Interface.Node[] ParseArray()
+        //todo rewoke
+        internal static Interface.Node[] ParseArray(Interface.Node[] nodeArrayNodes)
         {
+            return null;
+            //return JsonConvert.DeserializeObject<NodeElements[]>(nodeArrayNodes);
+
             //return jsonArray.Cast<JObject>().Select(jobject => new PhotoSizeInfo(jobject)).ToArray();
             //return JsonConvert.DeserializeObject<Node[]>(json);
-            return null;
         }
 
         internal static object CheckFormat(Interface.Node[] node)

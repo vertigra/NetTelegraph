@@ -15,6 +15,7 @@ namespace NetTelegraph.Test.MockServers
                 ServerBadResponse = FluentMockServer.Start(portBadResponse.Value);
 
             AddNewRouter("/createAccount", ResponseString.AccountResultResponse);
+            AddNewRouter("/createPage", ResponseString.PageResultResponse);
 
             AddNewRouter("/", ResponseString.CommonBadResponse, ServerBadResponse, 401);
         }

@@ -48,6 +48,7 @@
     <Compile Include="Enum\Tag.cs" />
     <Compile Include="Interface\Node.cs" />
     <Compile Include="Result\AccountResult.cs" />
+    <Compile Include="Result\PageResult.cs" />
     <Compile Include="TelegraphBot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Type\Account.cs" />

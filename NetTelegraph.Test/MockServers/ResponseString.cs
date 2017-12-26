@@ -2,6 +2,7 @@
 using NetTelegraph.Test.TestObject;
 using NetTelegraph.Type;
 using Newtonsoft.Json;
+using Node = NetTelegraph.Type.Node;
 
 namespace NetTelegraph.Test.MockServers
 {
@@ -21,7 +22,40 @@ namespace NetTelegraph.Test.MockServers
             }
         };
 
-        internal static string AccountResultResponse { get; } = JsonConvert.SerializeObject(mAccountResult, Formatting.Indented);
+        internal static string AccountResultResponse { get; } = JsonConvert.SerializeObject(mAccountResult,
+            Formatting.Indented);
+
+        private static readonly PageResult mPageResult = new PageResult
+        {
+            Ok = true,
+            Result = new Page
+            {
+                Path = "TestPath",
+                Url = "TestUrl",
+                Title = "TestTitle",
+                Description = "TestDescription",
+                AuthorName = "TestAuthorName",
+                AuthorUrl = "TestAuthorUrl",
+                ImageUrl = "TestImageUrl",
+                Content = new Node[]
+                {
+                    new Node
+                    {
+                       DOMTextNode = "TestDOMTextNode"
+                    },
+
+                    new Node
+                    {
+                       DOMTextNode = "TestDOMTextNode"
+                    }
+                },
+                Views = 123,
+                CanEdit = true
+            }
+        };
+
+        internal static string PageResultResponse { get; } = JsonConvert.SerializeObject(mPageResult,
+            Formatting.Indented);
 
         private static readonly BadResponse mBadResponse = new BadResponse
         {
