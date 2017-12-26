@@ -37,7 +37,7 @@ namespace NetTelegraph.Test.MockServers
                 AuthorName = "TestAuthorName",
                 AuthorUrl = "TestAuthorUrl",
                 ImageUrl = "TestImageUrl",
-                Content = new Node[]
+                Content = new[]
                 {
                     new Node
                     {

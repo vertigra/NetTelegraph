@@ -61,7 +61,7 @@ namespace NetTelegraph.Test.ToMockServerTest
             });
         }
 
-        [Test, Ignore("Fails")]
+        [Test]
         public void CreatePageTest()
         {
             Node[] content = {

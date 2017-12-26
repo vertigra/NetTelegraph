@@ -54,13 +54,18 @@ namespace NetTelegraph.Type
         [JsonProperty("image_url", Required = Required.AllowNull)]
         public string ImageUrl { get; set; }
 
-        //todo parse type
         /// <summary>
         /// Optional. 
         /// Content of the page.
         /// </summary>
         [JsonProperty("content", Required = Required.AllowNull)]
-        public Interface.Node[] Content { get; set; }
+        public Interface.Node[] Content
+        {
+            get { return null; }
+            
+
+            set { JsonConvert.SerializeObject(value); }
+        }
 
         /// <summary>
         /// Number of page views for the page.
