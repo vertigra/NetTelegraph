@@ -61,7 +61,7 @@ namespace NetTelegraph.Test.ToMockServerTest
             });
         }
 
-        [Test, Ignore("Fail")]
+        [Test]
         public void CreatePageTest()
         {
             Node[] content = {
@@ -78,11 +78,13 @@ namespace NetTelegraph.Test.ToMockServerTest
                 }
             };
 
-            mTelegraphBotOkResponse.CreatePage("TestAccessToken", "TestTitle", "TestAuthorName",
+            mTelegraphBotOkResponse.CreatePage("TestAccessToken", "TestTitle", content, "TestAuthorName",
                 "TestAuthorUrl", true);
 
             var request =
                 MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/createPage").UsingPost());
+
+            CommonUtils.PrintResult(request);
 
         }
     }

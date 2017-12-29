@@ -59,23 +59,7 @@ namespace NetTelegraph.Type
         /// Content of the page.
         /// </summary>
         [JsonProperty("content", Required = Required.AllowNull)]
-        public Interface.Node[] Content { get; set; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [JsonIgnore]
-        public string Contents
-        {
-            get { return Contents; }
-
-
-            set
-            {
-                Content = JsonConvert.DeserializeObject<Interface.Node[]>(value);
-            }
-        }
+        public Node[] Content { get; set; }
 
         /// <summary>
         /// Number of page views for the page.

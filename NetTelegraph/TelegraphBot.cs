@@ -76,14 +76,14 @@ namespace NetTelegraph
         /// Can be any link, not necessarily to a Telegram profile or channel.</param>
         /// <param name="returnContent">If true, a content field will be returned in the Page object (see: Content format).</param>
         /// <returns></returns>
-        public PageResult CreatePage(string accessToken, string title, /*Type.Node[] content,*/ string authorName = null,
+        public PageResult CreatePage(string accessToken, string title, Node[] content, string authorName = null,
             string authorUrl = null, bool returnContent = false)
         {
             RestRequest request = NewRestRequest(mCreatePagetUri);
 
             request.AddParameter("access_token", accessToken);
             request.AddParameter("title", title);
-            //request.AddParameter("content", content);
+            request.AddParameter("content", content);
 
             if(authorName != null)
                 request.AddParameter("author_name", authorName);
