@@ -20,7 +20,13 @@ namespace NetTelegraph.Result
         /// <summary>
         /// Result of the query.
         /// </summary>
-        [JsonProperty("result", Required = Required.Always)]
+        [JsonProperty("result", Required = Required.Default)]
         public Page Result { get; set; }
+
+        /// <summary>
+        /// Error message.
+        /// </summary>
+        [JsonProperty("error", Required = Required.Default)]
+        public string Error { get; set; }
     }
 }
