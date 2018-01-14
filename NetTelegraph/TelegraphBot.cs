@@ -2,7 +2,6 @@
 using System.Net;
 using System.Runtime.CompilerServices;
 using NetTelegraph.Result;
-using NetTelegraph.Type;
 using Newtonsoft.Json;
 using RestSharp;
 using Node = NetTelegraph.Interface.Node;

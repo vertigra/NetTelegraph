@@ -13,7 +13,7 @@ namespace NetTelegraph.Test
             WriteConsoleLog(request.FirstOrDefault()?.Url);
         }
 
-        internal static void WriteConsoleLog(string text)
+        private static void WriteConsoleLog(string text)
         {
             Console.WriteLine(DateTime.Now.ToLocalTime() + " " + text);
         }

@@ -20,7 +20,7 @@ namespace NetTelegraph.Test.MockServers
             AddNewRouter("/", ResponseString.CommonBadResponse, ServerBadResponse, 401);
         }
 
-        internal static void AddNewRouter(string url, string responseString, FluentMockServer server = null, int? statusCode = null)
+        private static void AddNewRouter(string url, string responseString, FluentMockServer server = null, int? statusCode = null)
         {
             if (statusCode == null)
                 statusCode = 200;
