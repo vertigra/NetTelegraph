@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTelegraph", "NetTelegrap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTelegraph.Test", "NetTelegraph.Test\NetTelegraph.Test.csproj", "{2F089581-953A-406B-8D2C-E6C86FAC5A09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0A26746E-B022-40E2-9B7B-3D5BADCF50F3}"
+	ProjectSection(SolutionItems) = preProject
+		ReSharperCodeStyle.DotSettings = ReSharperCodeStyle.DotSettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
