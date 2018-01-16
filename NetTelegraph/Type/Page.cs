@@ -75,7 +75,7 @@ namespace NetTelegraph.Type
         public bool CanEdit { get; set; }
 
         //todo rewoke
-        internal static Interface.Node[] ParseArray(Interface.Node[] nodeArrayNodes)
+        internal static Interface.INode[] ParseArray(Interface.INode[] nodeArrayNodes)
         {
             return null;
             //return JsonConvert.DeserializeObject<NodeElements[]>(nodeArrayNodes);
@@ -84,7 +84,7 @@ namespace NetTelegraph.Type
             //return JsonConvert.DeserializeObject<Node[]>(json);
         }
 
-        internal static object CheckFormat(Interface.Node[] node)
+        internal static object CheckFormat(Interface.INode[] node)
         {
             return null;
         }

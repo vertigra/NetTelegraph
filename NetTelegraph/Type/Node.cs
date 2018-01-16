@@ -4,11 +4,11 @@
     /// String which represents a DOM text node 
     /// See <see href="http://telegra.ph/api#Node">API</see>
     /// </summary>
-    public class Node : Interface.Node
+    public class Node : Interface.INode
     {
         /// <summary>
         /// 
         /// </summary>
-        public string DOMTextNode { get; set; }
+        public string DomTextNode { get; set; }
     }
 }

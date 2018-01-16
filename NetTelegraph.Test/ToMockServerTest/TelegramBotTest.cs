@@ -6,7 +6,7 @@ using NetTelegraph.Test.MockServers;
 using NetTelegraph.Type;
 using NUnit.Framework;
 using RestSharp;
-using Node = NetTelegraph.Interface.Node;
+using INode = NetTelegraph.Interface.INode;
 
 namespace NetTelegraph.Test.ToMockServerTest
 {
@@ -64,7 +64,7 @@ namespace NetTelegraph.Test.ToMockServerTest
         [Test]
         public void CreatePageTest()
         {
-            Node[] content = {
+            INode[] content = {
 
                 new NodeElements
                 {

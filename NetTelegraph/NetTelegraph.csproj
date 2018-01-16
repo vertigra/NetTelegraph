@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="Enum\Attrs.cs" />
     <Compile Include="Enum\Tag.cs" />
-    <Compile Include="Interface\Node.cs" />
+    <Compile Include="Interface\INode.cs" />
     <Compile Include="Result\AccountResult.cs" />
     <Compile Include="Result\PageResult.cs" />
     <Compile Include="TelegraphBot.cs" />

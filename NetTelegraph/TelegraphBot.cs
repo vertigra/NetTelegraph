@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using NetTelegraph.Result;
 using Newtonsoft.Json;
 using RestSharp;
-using Node = NetTelegraph.Interface.Node;
+using INode = NetTelegraph.Interface.INode;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("NetTelegraph.Test")]
@@ -75,7 +75,7 @@ namespace NetTelegraph
         /// Can be any link, not necessarily to a Telegram profile or channel.</param>
         /// <param name="returnContent">If true, a content field will be returned in the Page object (see: Content format).</param>
         /// <returns></returns>
-        public PageResult CreatePage(string accessToken, string title, Node[] content, string authorName = null,
+        public PageResult CreatePage(string accessToken, string title, INode[] content, string authorName = null,
             string authorUrl = null, bool returnContent = false)
         {
             RestRequest request = NewRestRequest(mCreatePagetUri);
