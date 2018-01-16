@@ -41,12 +41,12 @@ namespace NetTelegraph.Test.MockServers
                 {
                     new Node
                     {
-                       DOMTextNode = "TestDOMTextNode"
+                       DomTextNode = "TestDOMTextNode"
                     },
 
                     new Node
                     {
-                       DOMTextNode = "TestDOMTextNode"
+                       DomTextNode = "TestDOMTextNode"
                     }
                 },
                 Views = 123,
