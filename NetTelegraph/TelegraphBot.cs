@@ -30,6 +30,7 @@ namespace NetTelegraph
 
         private const string mCreateAccountUri = "/createAccount";
         private const string mCreatePagetUri = "/createPage";
+        private const string mEditAccountInfoUri = "/editAccountInfo";
 
         private static RestRequest NewRestRequest(string uri)
         {
@@ -92,6 +93,32 @@ namespace NetTelegraph
                 request.AddParameter("return_content", true);
 
             return ExecuteRequest<PageResult>(request) as PageResult;
+        }
+
+        /// <summary>
+        /// Use this method to update information about a Telegraph account. Pass only the parameters that you want to edit.
+        /// </summary>
+        /// <param name="accessToken">Required. Access token of the Telegraph account.</param>
+        /// <param name="shortName">New account name.</param>
+        /// <param name="authorName">New default author name used when creating new articles.</param>
+        /// <param name="authorUrl">New default profile link, opened when users click on the author's name below the title. 
+        /// Can be any link, not necessarily to a Telegram profile or channel.</param>
+        /// <returns>On success, returns an Account object with the default fields.</returns>
+        public AccountResult EditAccountInfo(string accessToken, string shortName = null, string authorName = null, string authorUrl = null)
+        {
+            //todo test this
+            RestRequest request = NewRestRequest(mEditAccountInfoUri);
+
+            request.AddParameter("access_token", accessToken);
+
+            if(shortName != null)
+                request.AddParameter("short_name", shortName);
+            if (authorName != null)
+                request.AddParameter("author_name", authorName);
+            if (authorUrl != null)
+                request.AddParameter("author_url", authorUrl);
+
+            return ExecuteRequest<AccountResult>(request) as AccountResult;
         }
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
