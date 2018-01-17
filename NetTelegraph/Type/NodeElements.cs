@@ -1,4 +1,5 @@
 ﻿using NetTelegraph.Enum;
+using NetTelegraph.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -7,7 +8,7 @@ namespace NetTelegraph.Type
     /// <summary>
     /// This object represents a DOM element node.
     /// </summary>
-    public class NodeElements : Interface.INode
+    public class NodeElements : INode
     {
         /// <summary>
         /// Name of the DOM element. 
