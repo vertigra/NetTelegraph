@@ -83,14 +83,37 @@ namespace NetTelegraph.Test.ToMockServerTest
 
             var request =
                 MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/createPage").UsingPost());
-
+            
             CommonUtils.PrintResult(request);
+
+            //todo end this
         }
 
         [Test]
         public void EditAccountInfoTest()
         {
-            
+            mTelegraphBotOkResponse.EditAccountInfo("TestAccessToken", "TestShortName", "TestAuthorName",
+                "TestAuthorUrl");
+
+            var request =
+                MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/editAccountInfo").UsingPost());
+
+            CommonUtils.PrintResult(request);
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual("access_token=TestAccessToken&" +
+                                "short_name=TestShortName&" +
+                                "author_name=TestAuthorName&" +
+                                "author_url=TestAuthorUrl", request.FirstOrDefault()?.Body);
+
+                Assert.AreEqual("/editAccountInfo", request.FirstOrDefault()?.Url);
+
+                Assert.Throws<Exception>(
+                    () =>
+                        mTelegraphBotBadResponse.EditAccountInfo("TestAccessToken", "TestShortName", "TestAuthorName",
+                            "TestAuthorUrl"));
+            });
         }
     }
 }

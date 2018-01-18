@@ -16,6 +16,7 @@ namespace NetTelegraph.Test.MockServers
 
             AddNewRouter("/createAccount", ResponseString.AccountResultResponse);
             AddNewRouter("/createPage", ResponseString.PageResultResponse);
+            AddNewRouter("/editAccountInfo", ResponseString.AccountResultResponse);
 
             AddNewRouter("/", ResponseString.CommonBadResponse, ServerBadResponse, 401);
         }

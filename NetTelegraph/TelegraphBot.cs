@@ -106,7 +106,6 @@ namespace NetTelegraph
         /// <returns>On success, returns an Account object with the default fields.</returns>
         public AccountResult EditAccountInfo(string accessToken, string shortName = null, string authorName = null, string authorUrl = null)
         {
-            //todo test this
             RestRequest request = NewRestRequest(mEditAccountInfoUri);
 
             request.AddParameter("access_token", accessToken);
