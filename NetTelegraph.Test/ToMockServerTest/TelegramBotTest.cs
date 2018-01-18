@@ -85,7 +85,12 @@ namespace NetTelegraph.Test.ToMockServerTest
                 MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/createPage").UsingPost());
 
             CommonUtils.PrintResult(request);
+        }
 
+        [Test]
+        public void EditAccountInfoTest()
+        {
+            
         }
     }
 }
