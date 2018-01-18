@@ -64,7 +64,7 @@ namespace NetTelegraph.Test.ToMockServerTest
         [Test]
         public void CreatePageTest()
         {
-            INode[] content = {
+            NodeElements[] content = {
 
                 new NodeElements
                 {

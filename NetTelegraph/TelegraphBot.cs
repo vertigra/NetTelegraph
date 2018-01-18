@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Runtime.CompilerServices;
+using NetTelegraph.Interface;
 using NetTelegraph.Result;
 using Newtonsoft.Json;
 using RestSharp;
-using INode = NetTelegraph.Interface.INode;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("NetTelegraph.Test")]
@@ -83,6 +83,7 @@ namespace NetTelegraph
 
             request.AddParameter("access_token", accessToken);
             request.AddParameter("title", title);
+            //todo parse content parameter
             request.AddParameter("content", content);
 
             if(authorName != null)

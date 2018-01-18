@@ -1,4 +1,5 @@
-﻿using NetTelegraph.Result;
+﻿using NetTelegraph.Enum;
+using NetTelegraph.Result;
 using NetTelegraph.Test.TestObject;
 using NetTelegraph.Type;
 using Newtonsoft.Json;
@@ -39,14 +40,17 @@ namespace NetTelegraph.Test.MockServers
                 ImageUrl = "TestImageUrl",
                 Content = new[]
                 {
-                    new Node
+                    new NodeElements
                     {
-                       DomTextNode = "TestDOMTextNode"
-                    },
-
-                    new Node
-                    {
-                       DomTextNode = "TestDOMTextNode"
+                       Tag = Tag.a,
+                       Attrs = Attrs.href,
+                       Children = new[]
+                       {
+                           new Node
+                           {
+                               DomTextNode = "TestTextNode"
+                           }
+                       }
                     }
                 },
                 Views = 123,
