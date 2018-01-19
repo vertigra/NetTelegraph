@@ -31,6 +31,8 @@ namespace NetTelegraph
         private const string mCreateAccountUri = "/createAccount";
         private const string mCreatePagetUri = "/createPage";
         private const string mEditAccountInfoUri = "/editAccountInfo";
+        private const string mEditPage = "/editPage";
+        private const string mGetPage = "/getPage";
 
         private static RestRequest NewRestRequest(string uri)
         {
@@ -97,7 +99,8 @@ namespace NetTelegraph
         }
 
         /// <summary>
-        /// Use this method to update information about a Telegraph account. Pass only the parameters that you want to edit.
+        /// Use this method to update information about a Telegraph account. 
+        /// Pass only the parameters that you want to edit.
         /// </summary>
         /// <param name="accessToken">Required. Access token of the Telegraph account.</param>
         /// <param name="shortName">New account name.</param>
@@ -119,6 +122,28 @@ namespace NetTelegraph
                 request.AddParameter("author_url", authorUrl);
 
             return ExecuteRequest<AccountResult>(request) as AccountResult;
+        }
+
+        //todo add editPage method
+        //todo add getAccountInfo method
+
+        /// <summary>
+        /// Use this method to get a Telegraph page.
+        /// </summary>
+        /// <param name="path">Required. 
+        /// Path to the Telegraph page (in the format Title-12-31, i.e. everything that comes after "http://telegra.ph/").</param>
+        /// <param name="returnContent">If true, content field will be returned in Page object.</param>
+        /// <returns>Returns a Page object on success.</returns>
+        public PageResult GetPage(string path, bool returnContent = false)
+        {
+            RestRequest request = NewRestRequest(mGetPage);
+
+            request.AddParameter("path", path);
+
+            if (returnContent)
+                request.AddParameter("return_content", true);
+
+            return ExecuteRequest<PageResult>(request) as PageResult;
         }
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
