@@ -33,6 +33,7 @@ namespace NetTelegraph
         private const string mEditAccountInfoUri = "/editAccountInfo";
         private const string mEditPage = "/editPage";
         private const string mGetPage = "/getPage";
+        private const string mGetPageList = "/getPageList";
 
         private static RestRequest NewRestRequest(string uri)
         {
@@ -136,6 +137,7 @@ namespace NetTelegraph
         /// <returns>Returns a Page object on success.</returns>
         public PageResult GetPage(string path, bool returnContent = false)
         {
+            //todo test this
             RestRequest request = NewRestRequest(mGetPage);
 
             request.AddParameter("path", path);
@@ -144,6 +146,26 @@ namespace NetTelegraph
                 request.AddParameter("return_content", true);
 
             return ExecuteRequest<PageResult>(request) as PageResult;
+        }
+
+        /// <summary>
+        /// Use this method to get a list of pages belonging to a Telegraph account.
+        /// </summary>
+        /// <param name="accessToken">Required. Access token of the Telegraph account.</param>
+        /// <param name="offset">Sequential number of the first page to be returned.</param>
+        /// <param name="limit">Limits the number of pages to be retrieved.</param>
+        /// <returns>Returns a PageList object, sorted by most recently created pages first.</returns>
+        public PageListResult GetPageList(string accessToken, int offset = 0, int limit = 50)
+        {
+            //todo test this
+            RestRequest request = NewRestRequest(mGetPageList);
+
+            request.AddParameter("access_token", accessToken);
+
+            request.AddParameter("offset", offset != 0 ? offset : 0);
+            request.AddParameter("limit", limit != 50 ? limit : 50);
+
+            return ExecuteRequest<PageListResult>(request) as PageListResult;
         }
 
         private object ExecuteRequest<T>(IRestRequest request) where T : class
@@ -156,6 +178,8 @@ namespace NetTelegraph
                     return JsonConvert.DeserializeObject<AccountResult>(response.Content);
                 if (typeof (T) == typeof (PageResult))
                     return JsonConvert.DeserializeObject<PageResult>(response.Content);
+                if (typeof(T) == typeof(PageListResult))
+                    return JsonConvert.DeserializeObject<PageListResult>(response.Content);
             }
 
             throw new Exception(response.StatusDescription);
