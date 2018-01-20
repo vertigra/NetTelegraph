@@ -9,7 +9,7 @@ namespace NetTelegraph.Result
     /// In case of an unsuccessful request, ok equals false, and the error is explained in the error field 
     /// (e.g. SHORT_NAME_REQUIRED).
     /// </summary>
-    public class PageListResult
+    public class PageViewsResult
     {
         /// <summary>
         /// If ok equals true, the request was successful, false otherwise.
@@ -21,7 +21,7 @@ namespace NetTelegraph.Result
         /// Result of the query.
         /// </summary>
         [JsonProperty("result", Required = Required.Always)]
-        public PageList Result { get; set; }
+        public PageViews Result { get; set; }
 
         /// <summary>
         /// Error message.

@@ -22,5 +22,11 @@ namespace NetTelegraph.Result
         /// </summary>
         [JsonProperty("result", Required = Required.Always)]
         public Account Result { get; set; }
+
+        /// <summary>
+        /// Error message.
+        /// </summary>
+        [JsonProperty("error", Required = Required.Default)]
+        public string Error { get; set; }
     }
 }

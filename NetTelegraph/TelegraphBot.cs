@@ -34,6 +34,7 @@ namespace NetTelegraph
         private const string mEditPage = "/editPage";
         private const string mGetPage = "/getPage";
         private const string mGetPageList = "/getPageList";
+        private const string mGetViews = "/getViews";
 
         private static RestRequest NewRestRequest(string uri)
         {
@@ -168,6 +169,30 @@ namespace NetTelegraph
             return ExecuteRequest<PageListResult>(request) as PageListResult;
         }
 
+        /// <summary>
+        /// Use this method to get the number of views for a Telegraph article. 
+        /// </summary>
+        /// <param name="path">Required. Path to the Telegraph page (in the format Title-12-31, where 12 is the month and 31 the day the article was first published).</param>
+        /// <param name="year">Required if month is passed. If passed, the number of page views for the requested year will be returned.</param>
+        /// <param name="month">Required if day is passed. If passed, the number of page views for the requested month will be returned.</param>
+        /// <param name="day">Required if hour is passed. If passed, the number of page views for the requested day will be returned.</param>
+        /// <param name="hour">If passed, the number of page views for the requested hour will be returned.</param>
+        /// <returns>Returns a PageViews object on success. By default, the total number of page views will be returned.</returns>
+        public PageViewsResult GetViews(string path, int? year = null, int? month = null, int? day = null, int? hour = null)
+        {
+            RestRequest request = NewRestRequest(mGetViews);
+
+            request.AddParameter("path", path);
+            request.AddParameter("year", year);
+            request.AddParameter("month", month);
+            request.AddParameter("day", day);
+
+            if (hour != null)
+                request.AddParameter("hour", hour);
+
+            return ExecuteRequest<PageViewsResult>(request) as PageViewsResult;
+        }
+
         private object ExecuteRequest<T>(IRestRequest request) where T : class
         {
             IRestResponse response = mRestClient.Execute(request);
@@ -180,6 +205,8 @@ namespace NetTelegraph
                     return JsonConvert.DeserializeObject<PageResult>(response.Content);
                 if (typeof(T) == typeof(PageListResult))
                     return JsonConvert.DeserializeObject<PageListResult>(response.Content);
+                if (typeof(T) == typeof(PageViewsResult))
+                    return JsonConvert.DeserializeObject<PageViewsResult>(response.Content);
             }
 
             throw new Exception(response.StatusDescription);
