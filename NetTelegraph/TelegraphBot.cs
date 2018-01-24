@@ -155,11 +155,9 @@ namespace NetTelegraph
         /// <returns>Returns a PageList object, sorted by most recently created pages first.</returns>
         public PageListResult GetPageList(string accessToken, int offset = 0, int limit = 50)
         {
-            //todo test this
             RestRequest request = NewRestRequest(mGetPageList);
 
             request.AddParameter("access_token", accessToken);
-
             request.AddParameter("offset", offset != 0 ? offset : 0);
             request.AddParameter("limit", limit != 50 ? limit : 50);
 
@@ -177,6 +175,7 @@ namespace NetTelegraph
         /// <returns>Returns a PageViews object on success. By default, the total number of page views will be returned.</returns>
         public PageViewsResult GetViews(string path, int? year = null, int? month = null, int? day = null, int? hour = null)
         {
+            //todo test this
             RestRequest request = NewRestRequest(mGetViews);
 
             request.AddParameter("path", path);

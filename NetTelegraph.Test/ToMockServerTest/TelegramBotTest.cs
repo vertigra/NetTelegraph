@@ -125,7 +125,6 @@ namespace NetTelegraph.Test.ToMockServerTest
 
             CommonUtils.PrintResult(request);
 
-
             Assert.Multiple(() =>
             {
                 Assert.AreEqual("path=TestPath&return_content=False", request.FirstOrDefault()?.Body);
@@ -133,6 +132,26 @@ namespace NetTelegraph.Test.ToMockServerTest
                 Assert.AreEqual("/getPage", request.FirstOrDefault()?.Url);
 
                 Assert.Throws<Exception>(() => mTelegraphBotBadResponse.GetPage("TestPath"));
+            });
+        }
+
+        [Test]
+        public void GetPageListTest()
+        {
+            mTelegraphBotOkResponse.GetPageList("TestAccessToken", limit:100);
+
+            var request =
+                MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/getPageList").UsingPost());
+
+            CommonUtils.PrintResult(request);
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual("access_token=TestAccessToken&offset=0&limit=100", request.FirstOrDefault()?.Body);
+
+                Assert.AreEqual("/getPageList", request.FirstOrDefault()?.Url);
+
+                Assert.Throws<Exception>(() => mTelegraphBotBadResponse.GetPageList("TestAccessToken", limit: 100));
             });
         }
     }
