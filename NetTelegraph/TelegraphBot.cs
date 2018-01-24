@@ -195,14 +195,7 @@ namespace NetTelegraph
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                if (typeof (T) == typeof (AccountResult))
-                    return JsonConvert.DeserializeObject<AccountResult>(response.Content);
-                if (typeof (T) == typeof (PageResult))
-                    return JsonConvert.DeserializeObject<PageResult>(response.Content);
-                if (typeof(T) == typeof(PageListResult))
-                    return JsonConvert.DeserializeObject<PageListResult>(response.Content);
-                if (typeof(T) == typeof(PageViewsResult))
-                    return JsonConvert.DeserializeObject<PageViewsResult>(response.Content);
+                return JsonConvert.DeserializeObject<T>(response.Content);
             }
 
             throw new Exception(response.StatusDescription);
