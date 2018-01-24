@@ -6,7 +6,6 @@ using NetTelegraph.Test.MockServers;
 using NetTelegraph.Type;
 using NUnit.Framework;
 using RestSharp;
-using INode = NetTelegraph.Interface.INode;
 
 namespace NetTelegraph.Test.ToMockServerTest
 {
@@ -113,6 +112,27 @@ namespace NetTelegraph.Test.ToMockServerTest
                     () =>
                         mTelegraphBotBadResponse.EditAccountInfo("TestAccessToken", "TestShortName", "TestAuthorName",
                             "TestAuthorUrl"));
+            });
+        }
+
+        [Test]
+        public void GetPageTest()
+        {
+            mTelegraphBotOkResponse.GetPage("TestPath");
+
+            var request =
+                MockServer.ServerOkResponse.SearchLogsFor(Requests.WithUrl("/getPage").UsingPost());
+
+            CommonUtils.PrintResult(request);
+
+
+            Assert.Multiple(() =>
+            {
+                Assert.AreEqual("path=TestPath&return_content=False", request.FirstOrDefault()?.Body);
+
+                Assert.AreEqual("/getPage", request.FirstOrDefault()?.Url);
+
+                Assert.Throws<Exception>(() => mTelegraphBotBadResponse.GetPage("TestPath"));
             });
         }
     }

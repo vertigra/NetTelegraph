@@ -138,13 +138,10 @@ namespace NetTelegraph
         /// <returns>Returns a Page object on success.</returns>
         public PageResult GetPage(string path, bool returnContent = false)
         {
-            //todo test this
             RestRequest request = NewRestRequest(mGetPage);
 
             request.AddParameter("path", path);
-
-            if (returnContent)
-                request.AddParameter("return_content", true);
+            request.AddParameter("return_content", returnContent);
 
             return ExecuteRequest<PageResult>(request) as PageResult;
         }
