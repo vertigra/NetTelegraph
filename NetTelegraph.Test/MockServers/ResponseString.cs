@@ -7,7 +7,7 @@ using Node = NetTelegraph.Type.Node;
 
 namespace NetTelegraph.Test.MockServers
 {
-    internal class ResponseString
+    internal static class ResponseString
     {
         #region common class
 
